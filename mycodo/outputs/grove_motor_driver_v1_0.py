@@ -243,10 +243,11 @@ class OutputModule(AbstractOutput):
 
     def dispense_volume_rate(self, channel, amount, dispense_rate):
         """ Dispense at a specific flow rate """
-        if amount < 0:
-            direction_reg = self.reg_write_run_ccw
-        else:
-            direction_reg = self.reg_write_run_cw
+        if amount != None:
+            if amount < 0:
+                direction_reg = self.reg_write_run_ccw
+            else:
+                direction_reg = self.reg_write_run_cw
 
         # Calculate total disperse time and durations to cycle on/off to reach total volume
         total_dispense_seconds = abs(amount) / dispense_rate * 60
